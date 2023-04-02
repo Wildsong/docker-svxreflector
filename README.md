@@ -1,4 +1,4 @@
-On Bellman,
+I have been known to build the image on Bellman then copy it to Tarra. It's faster than building on Tarra.
 
     dc build
 
@@ -10,12 +10,14 @@ Save the image
 
     docker save -o svxreflector.tar svxreflector:latest
 
-Copy everything to Tarra
-
-    scp * tarra:docker/svxreflector
+    scp svxreflector.tar tarra:docker/svxreflector
 
 On Tarra,
 
     docker load -i svxreflector.tar
     dc up -d
-    dc logs --follow
+
+
+
+The log file is stored in a volume because it has to be readable from the dashboard.
+

@@ -33,9 +33,7 @@ RUN apt-get update && apt-get install -y \
 COPY --from=builder /usr/bin/svxreflector /usr/bin/
 COPY --from=builder /usr/lib/x86_64-linux-gnu/libasync* /usr/lib/x86_64-linux-gnu/
 
-RUN mkdir /srv/log && \
-    ln -sf /dev/stdout /srv/log/svxreflector.log
-
 EXPOSE 5300
+
 WORKDIR /srv
 CMD ["/usr/bin/svxreflector", "--config=/srv/svxreflector.conf", "--logfile=/srv/log/svxreflector.log"]
