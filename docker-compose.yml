@@ -1,0 +1,20 @@
+version: '3.7'
+
+volumes:
+  logdir:
+    name: svxreflector_log
+
+services:
+  svxreflector:
+    container_name: svxreflector
+    image: svxreflector
+    build:
+      dockerfile: Dockerfile.svxreflector
+      context: .
+    ports:
+      - 5300:5300
+    volumes:
+      - ./svxreflector.conf:/srv/svxreflector.conf:ro
+      - logdir:/srv/log:rw
+
+    restart: unless-stopped
